@@ -2,15 +2,7 @@ import scipy
 import numpy
 import matplotlib.pyplot as pyplot
 import serial
-import twitter
-
-def getTweetCreds():
-    df = open('./twitter/login.dat', 'r')
-    creds = {}
-    for line in df:
-        l = line.split()
-        creds[l[0]] = l[1]
-    return creds
+import tweetHandler
 
 print("Welcome to Grillduino!  Connected grilling for the masses!")
 
@@ -23,15 +15,10 @@ Allow twitter users to send directed tweets to the twitter account requesting
 a status update on the grill.
 """
 
-creds = getTweetCreds()
+Bird = tweetHandler.Tweety()
 
-twit = twitter.Api(consumer_key=creds["ckey"],
-        consumer_secret=creds["csecret"],
-        access_token_key=creds["atkey"],
-        access_token_secret=creds["atsecret"])
+Bird.checkFeed()
 
-print twit.VerifyCredentials()
+#Bird.startGrilling()
 
-status = twit.PostUpdate("It's time to grill meat and chew bubble gum.  And I'm
-all out of Bazooka Joe.")
-#print status.text
+#Bird.stopGrilling()
