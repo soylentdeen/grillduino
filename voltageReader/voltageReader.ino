@@ -22,11 +22,10 @@ void loop() {
   float V2 = R2Value * (5.0 / 1023.0);
   float V3 = R3Value * (5.0 / 1023.0);
   // print out the value you read:
-  Serial.print("V1 : ");
-  Serial.println(V1);
-  Serial.print("V2: ");
-  Serial.println(V2);
-  Serial.print("V3: ");
+  Serial.print(V1);
+  Serial.print(" ");
+  Serial.print(V2);
+  Serial.print(" ");
   Serial.println(V3);
-  delay(2000);        // delay 30 sec in between reads
+  delay(10000);        // delay 30 sec in between reads
 }
