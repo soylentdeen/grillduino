@@ -8,8 +8,7 @@ import Queue
 import matplotlib.pyplot as pyplot
 import matplotlib
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
-# implement the default mpl key bindings
-#from matplotlib.backend_bases import key_press_handler
+import tweetHandler
 
 class GuiPart:
     def __init__(self, master, queue, endCommand):
@@ -121,6 +120,8 @@ class ThreadedClient:
         """
         self.master = master
 
+        self.Bird = tweetHandler.Tweety()
+
         # Create the queue
         self.queue = Queue.Queue()
 
@@ -132,6 +133,8 @@ class ThreadedClient:
         self.running = 1
     	self.thread1 = threading.Thread(target=self.workerThread1)
         self.thread1.start()
+        self.thread2 = threading.Thread(target=self.tweeterThread)
+        self.thread2.start()
 
         # Start the periodic call in the GUI to check if the queue contains
         # anything
@@ -168,6 +171,13 @@ class ThreadedClient:
             else:
                 #print("Waiting")
                 time.sleep(5)
+
+    def tweeterThread(self):
+        """
+        This is where the tweeting is handled.
+        """
+
+        self.
 
     def endApplication(self):
         self.running = 0

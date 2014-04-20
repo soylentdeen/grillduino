@@ -3,6 +3,8 @@ import numpy
 import matplotlib.pyplot as pyplot
 import serial
 import tweetHandler
+import guiHandler
+import Tkinter
 
 print("Welcome to Grillduino!  Connected grilling for the masses!")
 
@@ -15,7 +17,16 @@ Allow twitter users to send directed tweets to the twitter account requesting
 a status update on the grill.
 """
 
-Bird = tweetHandler.Tweety()
+
+root = Tkinter.Tk()
+GuiClient = guiHandler.ThreadedClient(root)
+root.mainloop()
+
+print 'asdf'
+
+Bird = tweetHandler.Tweety(GuiClient)
+
+print 'fdsa'
 
 Bird.checkFeed()
 

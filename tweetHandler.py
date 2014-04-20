@@ -34,18 +34,20 @@ class Tweety( object ):
 
         self.graphdir = './graphs/'
 
-    def __init__(self):
+    def __init__(self, parent):
         self.signIn()
         self.loadStuff()
+        self.parent = parent
         print self.status.GetText()
         print self.timeHorizon
     
     def shutdown(self):
         self.tweeter.ClearCredentials()
     
-    def reply(self, mention):
-        status = "If I were working properly, a time and temperature status update would appear here"
-        self.tweeter.PostUpdate(status, in_reply_to_status_id=mention.GetId())
+    def TNTreply(self, mention):
+        status = "A time and temperature status update should appear here"
+        #self.tweeter.PostUpdate(status, in_reply_to_status_id=mention.GetId())
+        print statuts
 
     def checkFeed(self):
         newMentions = self.tweeter.GetMentions()#since_id=self.timeHorizon)
@@ -54,7 +56,7 @@ class Tweety( object ):
             if (self.TNTtext in mention.GetText()) | (self.TNTNum in
                     mention.GetText()):
                 print "User wants a query!"
-                self.Reply(mention)
+                self.TNTreply(mention)
 
 
     def startGrilling(self):
